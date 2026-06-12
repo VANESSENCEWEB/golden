@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Vanessenceweb — Sites modernos que trabalham por você</title>
+<meta name="description" content="Agência de criação de sites: landing pages, redesigns e sites institucionais modernos, rápidos e feitos à mão.">
+
+<!-- Fontes da marca: Space Grotesk (títulos) + Inter (texto) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* =============================================================
+   1. TOKENS DE DESIGN — paleta da Vanessenceweb
+   Acento dourado sobre base clara/escura. Troque os tokens aqui
+   e o site inteiro acompanha (multi-paleta na prática).
+   ============================================================= */
+:root{
+  --bg:        #ffffff;
+  --bg-soft:   #f7f6f2;                 /* off-white quente, combina com dourado */
+  --ink:       #161513;
+  --ink-soft:  #6f6a5f;
+  --dark:      #0d0c0a;
+  --dark-ink:  #f5f2ea;
+
+  --gold:      #c9a227;                 /* dourado principal */
+  --gold-soft: #e6c860;
+  --grad: linear-gradient(100deg, #e6c860 0%, #c9a227 45%, #8a6a10 100%);
+
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body:    "Inter", -apple-system, sans-serif;
+
+  --radius-card: 24px;
+  --nav-h: 56px;
+  --max-w: 1100px;
+  --ease: cubic-bezier(.25,.7,.25,1);
+}
+
+*{ margin:0; padding:0; box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+body{
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+h1,h2,h3{ font-family: var(--font-display); }
+a{ color:inherit; text-decoration:none; }
+.wrap{ max-width:var(--max-w); margin-inline:auto; padding-inline:24px; }
+
+/* =============================================================
+   2. NAV FIXA COM BLUR
+   ============================================================= */
+.nav{
+  position:fixed; inset:0 0 auto 0; height:var(--nav-h); z-index:100;
+  display:flex; align-items:center; justify-content:center;
+  background: rgba(255,255,255,.55);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+  border-bottom:1px solid transparent;
+  transition: border-color .4s var(--ease), background .4s var(--ease);
+}
+.nav.scrolled{ background:rgba(255,255,255,.78); border-bottom-color:rgba(0,0,0,.08); }
+.nav-inner{
+  width:100%; max-width:var(--max-w);
+  display:flex; align-items:center; justify-content:space-between;
+  padding-inline:24px; font-size:13px;
+}
+.nav-logo{
+  font-family:var(--font-display); font-weight:700; font-size:16px;
+  letter-spacing:-.01em;
+}
+.nav-logo span{ color:var(--gold); }
+.nav-links{ display:flex; gap:28px; list-style:none; color:var(--ink-soft); }
+.nav-links a{ transition:color .2s; }
+.nav-links a:hover{ color:var(--ink); }
+.nav-cta{
+  background:var(--ink); color:#fff;
+  padding:7px 16px; border-radius:980px; font-size:12px; font-weight:600;
+  transition: transform .2s var(--ease), background .2s;
+}
+.nav-cta:hover{ background:var(--gold); transform:scale(1.04); }
+@media (max-width:720px){ .nav-links{ display:none; } }
+
+/* =============================================================
+   3. HERO DA AGÊNCIA
+   ============================================================= */
+.hero{
+  min-height:100svh;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center; padding-top:var(--nav-h); position:relative;
+}
+.hero-eyebrow{
+  font-size:14px; font-weight:600; color:var(--ink-soft);
+  text-transform:uppercase; letter-spacing:.14em;
+}
+.hero-title{
+  margin-top:10px;
+  font-size: clamp(52px, 10vw, 128px);
+  font-weight:700; letter-spacing:-.04em; line-height:.98;
+}
+.hero-title em{
+  font-style:normal;
+  background:var(--grad);
+  -webkit-background-clip:text; background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.hero-sub{
+  margin-top:18px; max-width:46ch;
+  font-size: clamp(17px,2.2vw,21px); color:var(--ink-soft); line-height:1.5;
+}
+.hero-actions{ margin-top:30px; display:flex; gap:14px; flex-wrap:wrap; justify-content:center; }
+.btn{
+  display:inline-block; padding:13px 28px; border-radius:980px;
+  font-size:16px; font-weight:600;
+  transition: transform .25s var(--ease), background .25s, color .25s, box-shadow .25s;
+}
+.btn-gold{ background:var(--gold); color:#fff; box-shadow:0 10px 30px -12px rgba(201,162,39,.7); }
+.btn-gold:hover{ background:#b08d1d; transform:scale(1.05); }
+.btn-ghost{ border:1.5px solid rgba(0,0,0,.18); }
+.btn-ghost:hover{ border-color:var(--ink); transform:scale(1.05); }
+
+@keyframes rise{ from{opacity:0; transform:translateY(28px)} to{opacity:1; transform:none} }
+.hero > *{ opacity:0; animation: rise 1s var(--ease) forwards; }
+.hero > *:nth-child(1){ animation-delay:.1s }
+.hero > *:nth-child(2){ animation-delay:.22s }
+.hero > *:nth-child(3){ animation-delay:.36s }
+.hero > *:nth-child(4){ animation-delay:.5s }
+.hero > *:nth-child(5){ animation-delay:.75s }
+
+.hero-scroll{
+  margin-top:60px; font-size:13px; color:var(--ink-soft);
+  display:flex; flex-direction:column; align-items:center; gap:6px;
+}
+@keyframes bounce{ 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
+.hero-scroll svg{ animation:bounce 2s infinite; }
+
+/* =============================================================
+   4. REVEAL ON SCROLL
+   ============================================================= */
+.reveal{ opacity:0; transform:translateY(40px); transition:opacity .9s var(--ease), transform .9s var(--ease); }
+.reveal.in-view{ opacity:1; transform:none; }
+.d1{ transition-delay:.08s } .d2{ transition-delay:.16s } .d3{ transition-delay:.24s }
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;
+    scroll-behavior:auto !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ===================== NAV ===================== -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="#">Vanessence<span>web</span></a>
+    <ul class="nav-links">
+      <li><a href="#processo">Como funciona</a></li>
+      <li><a href="#servicos">Serviços</a></li>
+      <li><a href="#projetos">Projetos</a></li>
+      <li><a href="#sobre">Sobre</a></li>
+    </ul>
+    <a class="nav-cta" href="#contato">Pedir orçamento</a>
+  </div>
+</nav>
+
+<!-- ===================== HERO ===================== -->
+<header class="hero">
+  <p class="hero-eyebrow">Agência de criação de sites</p>
+  <h1 class="hero-title">Sites que<br><em>trabalham</em> por você.</h1>
+  <p class="hero-sub">Landing pages, redesigns e sites institucionais modernos, rápidos e feitos à mão — código limpo, sem template genérico.</p>
+  <div class="hero-actions">
+    <a class="btn btn-gold" href="#contato">Quero meu site</a>
+    <a class="btn btn-ghost" href="#processo">Ver como funciona</a>
+  </div>
+  <div class="hero-scroll">
+    Role para ver a mágica
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+      <path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+</header>
+
+<style>
+/* =============================================================
+   5. NOTEBOOK CSS + SITE QUE SE CONSTRÓI DENTRO DA TELA
+   A tampa abre com o scroll (como antes), mas agora a tela
+   contém um MINI-SITE desenhado em CSS. Cada pedaço dele tem a
+   classe .stage e um data-at="0.x": o JS compara com o progresso
+   do scroll e vai "montando" o site em etapas, como se o
+   visitante assistisse a construção ao vivo.
+   ============================================================= */
+.laptop{
+  --laptop-color:#2a2a2e;               /* corpo grafite, vibe estúdio */
+  --laptop-w: min(640px, 84vw);
+  width:var(--laptop-w);
+  margin-inline:auto;
+  perspective:1400px;
+}
+.laptop-lid{
+  width:100%; aspect-ratio:16/10.4;
+  border-radius:18px 18px 4px 4px;
+  background: linear-gradient(165deg,
+              color-mix(in srgb, var(--laptop-color) 80%, #fff) 0%,
+              var(--laptop-color) 55%,
+              color-mix(in srgb, var(--laptop-color) 70%, #000) 100%);
+  padding: clamp(8px,1.6vw,12px);
+  transform-origin: bottom center;
+  transform: rotateX(-78deg);
+  box-shadow: 0 30px 60px -20px rgba(0,0,0,.4);
+  will-change: transform;
+}
+.laptop-base{
+  width:106%; margin-left:-3%;
+  height: clamp(10px,2vw,16px);
+  border-radius:2px 2px 14px 14px;
+  background: linear-gradient(180deg,
+              color-mix(in srgb, var(--laptop-color) 86%, #fff) 0%,
+              color-mix(in srgb, var(--laptop-color) 60%, #000) 100%);
+  position:relative;
+}
+.laptop-base::before{
+  content:""; position:absolute; top:0; left:50%; transform:translateX(-50%);
+  width:18%; height:38%; border-radius:0 0 10px 10px;
+  background:rgba(0,0,0,.25);
+}
+
+/* --- MINI-SITE DENTRO DA TELA ----------------------------------
+   ⚙️ Onde personalizar:
+   - Textos: direto no HTML do mini-site.
+   - MOMENTO em que cada coisa surge: atributo data-at no HTML
+     (0 = começo da seção sticky, 1 = fim).
+   - Frase digitada e velocidade: objeto DEMO no JavaScript.
+   - Posição final do cursor falso: .mini-pointer{ left / bottom }.
+   ---------------------------------------------------------------- */
+.laptop-screen{
+  width:100%; height:100%;
+  border-radius:10px 10px 2px 2px;
+  background:#0a0a0f;
+  overflow:hidden;
+  display:flex; flex-direction:column;
+  font-size: clamp(5px, 1.1vw, 8px);   /* tudo dentro escala em "em" */
+}
+
+/* barra do navegador + barrinha de carregamento dourada */
+.mini-bar{
+  display:flex; align-items:center; gap:.7em;
+  background:#17171c; padding:.9em 1.2em; position:relative;
+}
+.mini-bar i{ width:.9em; height:.9em; border-radius:50%; background:#3a3a40; }
+.mini-bar i:nth-child(1){ background:#ff5f57 }
+.mini-bar i:nth-child(2){ background:#febc2e }
+.mini-bar i:nth-child(3){ background:#28c840 }
+.mini-url{ flex:1; background:#0a0a0f; border-radius:99em; color:#8a8a92; padding:.4em 1em; font-size:.95em; }
+.mini-progress{
+  position:absolute; left:0; bottom:0; height:2px; width:0;
+  background:var(--grad);
+  transition: width 1.1s var(--ease) .2s;   /* "carregando a página" */
+}
+.stage.on .mini-progress{ width:100%; }
+
+/* corpo: aurora viva + grade técnica por trás de tudo */
+.mini-body{
+  flex:1; position:relative; overflow:hidden;
+  padding:1.6em 2.2em;
+  display:flex; flex-direction:column; gap:1.2em;
+}
+.mini-body::before{                       /* aurora: 3 radiais borradas girando */
+  content:""; position:absolute; inset:-40%;
+  background:
+    radial-gradient(35% 45% at 20% 30%, rgba(230,200,96,.5), transparent 70%),
+    radial-gradient(40% 50% at 80% 25%, rgba(90,100,168,.45), transparent 70%),
+    radial-gradient(45% 55% at 60% 90%, rgba(239,93,168,.35), transparent 70%);
+  filter: blur(26px);
+  animation: aurora 9s ease-in-out infinite alternate;
+}
+@keyframes aurora{ from{ transform:rotate(0) scale(1) } to{ transform:rotate(22deg) scale(1.25) } }
+.mini-body::after{                        /* grade sutil estilo "blueprint" */
+  content:""; position:absolute; inset:0;
+  background:
+    linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+  background-size:3.2em 3.2em;
+  -webkit-mask-image: radial-gradient(85% 85% at 50% 40%, #000, transparent);
+  mask-image: radial-gradient(85% 85% at 50% 40%, #000, transparent);
+}
+.mini-body > *{ position:relative; z-index:1; }  /* conteúdo acima do fundo */
+
+.mini-nav{ display:flex; justify-content:space-between; align-items:center; }
+.mini-logo{ color:#fff; font-weight:700; font-family:var(--font-display); font-size:1.25em; }
+.mini-logo b{ color:var(--gold-soft); }
+.mini-links{ display:flex; gap:1.4em; color:#9a9aa4; font-size:.92em; font-weight:500; }
+
+/* hero interno em duas colunas: texto | cartão de métricas */
+.mini-hero{ display:flex; gap:2em; align-items:center; flex:1; min-height:0; }
+.mini-col{ flex:1.15; display:flex; flex-direction:column; gap:1em; }
+.mini-h1{
+  color:#fff; font-family:var(--font-display); font-weight:700;
+  font-size:2.4em; line-height:1.08; letter-spacing:-.02em; min-height:2.3em;
+}
+.mini-h1 b{
+  background:var(--grad);
+  -webkit-background-clip:text; background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.mini-cursor{
+  display:inline-block; width:.07em; height:.95em;
+  background:var(--gold-soft); margin-left:.1em;
+  animation:blink 1s steps(1) infinite; vertical-align:-.08em;
+}
+@keyframes blink{ 50%{ opacity:0 } }
+.mini-sub{ color:#b6b6c0; font-size:1em; line-height:1.5; max-width:32ch; }
+.mini-ctas{ display:flex; gap:1em; align-items:center; }
+.mini-btn{
+  padding:.75em 1.7em; border-radius:99em;
+  font-size:.95em; font-weight:600;
+  position:relative; overflow:hidden;
+  transition: transform .18s var(--ease);
+}
+.mini-btn.gold{ background:var(--gold); color:#fff; }
+.mini-btn.gold::after{                    /* brilho que varre o botão */
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(110deg, transparent 30%, rgba(255,255,255,.45) 50%, transparent 70%);
+  transform:translateX(-130%);
+}
+.stage.on .mini-btn.gold::after{ animation: shine 2.8s var(--ease) .5s infinite; }
+@keyframes shine{ 0%{transform:translateX(-130%)} 45%,100%{transform:translateX(130%)} }
+.mini-btn.gold.pressed{ transform:scale(.88); filter:brightness(1.2); } /* o "clique" */
+.mini-btn.ghost{ border:1px solid #4a4a55; color:#d6d6de; }
+
+/* cartão de métricas com gráfico que cresce barra a barra */
+.mini-visual{
+  flex:1; border-radius:1.2em; padding:1.3em;
+  background:rgba(20,20,28,.75);
+  border:1px solid rgba(255,255,255,.09);
+  -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px);
+  display:flex; flex-direction:column; gap:1em;
+}
+.mini-visual h4{
+  color:#e8e8ee; font-size:1em; font-weight:600;
+  display:flex; justify-content:space-between; font-family:var(--font-body);
+}
+.mini-visual h4 b{ color:#30d158; font-weight:600; }
+.mini-chart{ display:flex; align-items:flex-end; gap:.8em; height:6.5em; }
+.bar{
+  flex:1; border-radius:.4em .4em 0 0;
+  background:linear-gradient(180deg, var(--gold-soft), var(--gold));
+  transform-origin:bottom; transform:scaleY(.06);
+  transition: transform .9s var(--ease);
+}
+/* cada barra cresce um pouco depois da anterior */
+.bar:nth-child(2){ transition-delay:.12s } .bar:nth-child(3){ transition-delay:.24s }
+.bar:nth-child(4){ transition-delay:.36s } .bar:nth-child(5){ transition-delay:.48s }
+.stage.on .bar{ transform:scaleY(var(--h)); }   /* --h vem do HTML (0 a 1) */
+.mini-avatars{ display:flex; align-items:center; color:#9a9aa4; font-size:.85em; }
+.mini-avatars i{
+  width:1.7em; height:1.7em; border-radius:50%; margin-right:-.7em;
+  border:2px solid #14141c;
+  background:linear-gradient(135deg, var(--gold-soft), #ef5da8);
+}
+.mini-avatars i:nth-child(2){ background:linear-gradient(135deg,#5a64a8,#0a84ff) }
+.mini-avatars i:nth-child(3){ background:linear-gradient(135deg,#30d158,#0c5727); margin-right:.7em }
+
+/* cards de recursos com varredura de brilho contínua */
+.mini-cards{ display:flex; gap:1.1em; }
+.mini-card{
+  flex:1; border-radius:1em; padding:.95em;
+  background:rgba(22,22,30,.8);
+  border:1px solid rgba(255,255,255,.08);
+  color:#cfcfd8; font-size:.92em; font-weight:500;
+  display:flex; align-items:center; gap:.7em;
+  position:relative; overflow:hidden;
+}
+.mini-card::after{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(110deg, transparent 35%, rgba(255,255,255,.09) 50%, transparent 65%);
+  transform:translateX(-130%); animation:shine 3.6s linear infinite;
+}
+.mini-card em{ font-style:normal; font-size:1.25em; }
+
+/* notificações que pipocam no canto (estilo prova social) */
+.mini-toast{
+  position:absolute; right:1.4em; z-index:2;
+  background:rgba(28,28,38,.92);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:.9em; padding:.7em 1.1em;
+  color:#e8e8ee; font-size:.95em; font-weight:500;
+  -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px);
+  box-shadow:0 1.2em 2.4em rgba(0,0,0,.45);
+  transform:translateX(120%); opacity:0;
+  transition: transform .6s var(--ease), opacity .6s var(--ease);
+}
+.mini-toast.on{ transform:none; opacity:1; }
+.toast-1{ top:4.2em; } .toast-2{ top:7.6em; }
+
+/* cursor falso: entra da direita e "clica" o botão dourado.
+   Ajuste left/bottom para mirar em outro lugar. */
+.mini-pointer{
+  position:absolute; z-index:3; width:1.7em; height:1.7em;
+  left:15%; bottom:31%;
+  opacity:0; pointer-events:none;
+  filter: drop-shadow(0 .3em .6em rgba(0,0,0,.5));
+}
+.mini-pointer.on{ animation: pointer 2s var(--ease) forwards; }
+@keyframes pointer{
+  0%  { opacity:0; transform:translate(14em,7em) scale(1); }
+  45% { opacity:1; transform:translate(0,0) scale(1); }
+  60% { transform:translate(0,0) scale(.75); }   /* momento do clique */
+  75% { transform:translate(0,0) scale(1); }
+  100%{ opacity:1; transform:translate(0,0) scale(1); }
+}
+
+/* =============================================================
+   6. SEÇÃO STICKY (pai alto + filho sticky), igual à anterior
+   ============================================================= */
+.pin-section{ height:360vh; position:relative; }
+.pin-stage{
+  position:sticky; top:0; height:100svh;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap: clamp(20px,4vh,40px); overflow:hidden;
+}
+.pin-title{
+  font-size: clamp(28px,5vw,56px);
+  font-weight:700; letter-spacing:-.03em; text-align:center; line-height:1.08;
+  opacity:0; transform:translateY(20px) scale(.96);
+  transition: opacity .5s var(--ease), transform .5s var(--ease);
+  padding-inline:24px;
+}
+.pin-title.show{ opacity:1; transform:none; }
+.pin-title em{
+  font-style:normal;
+  background:var(--grad);
+  -webkit-background-clip:text; background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.pin-hint{
+  font-size:13px; color:var(--ink-soft);
+  opacity:1; transition:opacity .4s;
+}
+.pin-hint.hide{ opacity:0; }
+</style>
+
+<!-- ===================== STICKY: SITE SENDO CONSTRUÍDO ===================== -->
+<section class="pin-section" id="processo">
+  <div class="pin-stage">
+    <h2 class="pin-title" id="pinTitle">Seu site, construído <em>na sua frente.</em></h2>
+    <div class="laptop">
+      <div class="laptop-lid" id="lid">
+        <div class="laptop-screen">
+          <!-- data-at = momento do scroll (0 a 1) em que o elemento entra -->
+          <div class="mini-bar stage" data-at="0.16">
+            <i></i><i></i><i></i>
+            <span class="mini-url">https://suaempresa.com.br</span>
+            <span class="mini-progress"></span>
+          </div>
+          <div class="mini-body">
+            <div class="mini-nav stage" data-at="0.28">
+              <span class="mini-logo">Sua<b>Marca</b></span>
+              <span class="mini-links"><span>Início</span><span>Serviços</span><span>Contato</span></span>
+            </div>
+            <div class="mini-hero">
+              <div class="mini-col">
+                <div class="mini-h1 stage" data-at="0.38" id="typeStage">
+                  <span id="typeTarget"></span><span class="mini-cursor"></span>
+                </div>
+                <p class="mini-sub stage" data-at="0.58">Design sob medida, carregamento rápido e visual que passa confiança.</p>
+                <div class="mini-ctas stage" data-at="0.66">
+                  <span class="mini-btn gold" id="miniBtn">Fale conosco</span>
+                  <span class="mini-btn ghost">Ver serviços</span>
+                </div>
+              </div>
+              <div class="mini-visual stage" data-at="0.5">
+                <h4>Visitas no site <b>▲ +64%</b></h4>
+                <div class="mini-chart">
+                  <span class="bar" style="--h:.45"></span>
+                  <span class="bar" style="--h:.62"></span>
+                  <span class="bar" style="--h:.52"></span>
+                  <span class="bar" style="--h:.8"></span>
+                  <span class="bar" style="--h:1"></span>
+                </div>
+                <div class="mini-avatars"><i></i><i></i><i></i> novos clientes hoje</div>
+              </div>
+            </div>
+            <div class="mini-cards stage" data-at="0.74">
+              <div class="mini-card"><em>⚡</em> Rápido</div>
+              <div class="mini-card"><em>📱</em> Responsivo</div>
+              <div class="mini-card"><em>🔍</em> SEO pronto</div>
+            </div>
+            <!-- notificações: troque o texto e o data-at à vontade -->
+            <div class="mini-toast toast-1" data-at="0.8">⭐ Avaliação 5,0 recebida</div>
+            <div class="mini-toast toast-2" data-at="0.86">🛒 Novo pedido no site</div>
+            <!-- cursor falso que clica no botão dourado -->
+            <div class="mini-pointer" data-at="0.9">
+              <svg viewBox="0 0 24 24" fill="#fff" stroke="#1a1a1a" stroke-width="1.2">
+                <path d="M5 3l14 8-6 1.5L16 19l-3 1.5-3-6.5L5 17z"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="laptop-base"></div>
+    </div>
+    <p class="pin-hint" id="pinHint">Continue rolando…</p>
+  </div>
+</section>
+
+<style>
+/* =============================================================
+   7. MARQUEE INFINITO DE SERVIÇOS (cards que rolam sozinhos)
+   Técnica: duplicamos a fileira de cards (.track aparece 2x no
+   HTML) e animamos translateX de 0 a -50%. Quando a primeira
+   metade sai, a cópia idêntica já está no lugar — loop perfeito,
+   sem JS. Hover pausa com animation-play-state.
+   ============================================================= */
+.section{ padding: clamp(80px,12vh,140px) 0; }
+.section-label{
+  font-size:13px; font-weight:600; color:var(--gold);
+  text-transform:uppercase; letter-spacing:.14em;
+}
+.section-title{
+  font-size: clamp(32px,4.6vw,52px);
+  font-weight:700; letter-spacing:-.03em; line-height:1.06;
+  margin-top:8px; max-width:20ch;
+}
+.marquee{
+  margin-top:48px;
+  overflow:hidden;
+  /* máscara: cards somem suavemente nas bordas */
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.marquee-inner{
+  display:flex; gap:20px; width:max-content;
+  animation: marquee 34s linear infinite;
+}
+.marquee:hover .marquee-inner{ animation-play-state:paused; }
+@keyframes marquee{
+  from{ transform:translateX(0) }
+  to  { transform:translateX(-50%) }   /* -50% porque o conteúdo está duplicado */
+}
+.card{
+  flex:0 0 320px;
+  border-radius:var(--radius-card);
+  padding:28px;
+  min-height:340px;
+  display:flex; flex-direction:column; justify-content:flex-end;
+  position:relative; overflow:hidden; color:#fff;
+  transition: transform .5s var(--ease);
+}
+.card:hover{ transform: translateY(-8px); }
+.card h3{ font-size:22px; letter-spacing:-.02em; line-height:1.15; }
+.card p{ margin-top:8px; font-size:14px; opacity:.85; line-height:1.5; }
+.card .chip{
+  position:absolute; top:22px; left:22px;
+  font-size:11px; font-weight:600;
+  background:rgba(255,255,255,.18);
+  -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px);
+  padding:5px 11px; border-radius:980px;
+}
+.c1{ background:linear-gradient(160deg,#c9a227,#7a5c0c) }
+.c2{ background:linear-gradient(160deg,#1d1d1f,#3a3a3e) }
+.c3{ background:linear-gradient(160deg,#5a64a8,#262a4d) }
+.c4{ background:linear-gradient(160deg,#0a84ff,#063a73) }
+.c5{ background:linear-gradient(160deg,#30d158,#0c5727) }
+.c6{ background:linear-gradient(160deg,#ef5da8,#7c1f52) }
+@media (prefers-reduced-motion: reduce){
+  .marquee-inner{ animation:none; }
+  .marquee{ overflow-x:auto; -webkit-mask-image:none; mask-image:none; }
+}
+
+/* =============================================================
+   8. PORTFÓLIO (projetos reais) + NÚMEROS (dark) + CTA
+   ============================================================= */
+.projects{ background:var(--bg-soft); }
+.proj-grid{
+  display:grid; gap:20px; margin-top:48px;
+  grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+}
+.proj{
+  border-radius:var(--radius-card); overflow:hidden;
+  background:#fff; border:1px solid rgba(0,0,0,.06);
+  transition: transform .5s var(--ease), box-shadow .5s var(--ease);
+}
+.proj:hover{ transform:translateY(-6px); box-shadow:0 30px 60px -30px rgba(0,0,0,.25); }
+.proj-thumb{
+  aspect-ratio:16/10; display:flex; align-items:center; justify-content:center;
+  font-family:var(--font-display); font-weight:700; color:#fff;
+  font-size:20px; letter-spacing:-.02em;
+}
+.proj:nth-child(1) .proj-thumb{ background:linear-gradient(140deg,#1b4332,#081c15) }
+.proj:nth-child(2) .proj-thumb{ background:linear-gradient(140deg,#14213d,#000814) }
+.proj:nth-child(3) .proj-thumb{ background:linear-gradient(140deg,#6d3b00,#2b1700) }
+.proj-info{ padding:20px 22px 24px; }
+.proj-info h3{ font-size:18px; }
+.proj-info p{ margin-top:6px; font-size:14px; color:var(--ink-soft); line-height:1.5; }
+
+.dark{
+  background:var(--dark); color:var(--dark-ink);
+  border-radius:40px; margin-inline:clamp(8px,2vw,24px);
+}
+.dark .section-label{ color:var(--gold-soft); }
+.stats{
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:48px 32px; margin-top:56px;
+}
+.stat-num{
+  font-family:var(--font-display);
+  font-size:clamp(52px,7vw,88px); font-weight:700; letter-spacing:-.03em; line-height:1;
+  background:var(--grad);
+  -webkit-background-clip:text; background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.stat-num small{ font-size:.45em; }
+.stat-label{ margin-top:10px; font-size:15px; color:#a9a397; max-width:24ch; line-height:1.45; }
+
+.cta{ text-align:center; }
+.cta .section-title{ margin-inline:auto; }
+.cta p{ margin-top:14px; color:var(--ink-soft); font-size:17px; }
+.cta .btn{ margin-top:28px; }
+
+.footer{
+  padding:56px 0 40px; font-size:12.5px; color:var(--ink-soft);
+  text-align:center; line-height:1.9; border-top:1px solid rgba(0,0,0,.07);
+}
+</style>
+
+<!-- ===================== SERVIÇOS (MARQUEE) ===================== -->
+<section class="section" id="servicos">
+  <div class="wrap">
+    <p class="section-label reveal">Serviços</p>
+    <h2 class="section-title reveal">Tudo que o seu site precisa.</h2>
+  </div>
+  <div class="marquee reveal" aria-label="Lista de serviços em rolagem automática">
+    <div class="marquee-inner">
+      <!-- fileira 1 -->
+      <article class="card c1"><span class="chip">Landing pages</span><h3>Páginas que convertem visita em cliente.</h3><p>Estrutura pensada para vender: proposta clara, prova e chamada para ação.</p></article>
+      <article class="card c2"><span class="chip">Redesign</span><h3>Seu site antigo, renascido.</h3><p>Visual moderno, código limpo e carregamento rápido sem perder o que já funciona.</p></article>
+      <article class="card c3"><span class="chip">Institucional</span><h3>A casa digital da sua marca.</h3><p>Multi-páginas com identidade própria, responsivo do celular ao desktop.</p></article>
+      <article class="card c4"><span class="chip">Performance</span><h3>Velocidade é experiência.</h3><p>Otimização de imagens, código e métricas Core Web Vitals no verde.</p></article>
+      <article class="card c5"><span class="chip">SEO</span><h3>Encontrável no Google.</h3><p>Estrutura semântica, meta tags e conteúdo organizado para buscadores.</p></article>
+      <article class="card c6"><span class="chip">Animações</span><h3>Movimento com propósito.</h3><p>Micro-interações e efeitos de scroll que contam a história da sua marca.</p></article>
+      <!-- fileira 2: CÓPIA EXATA da fileira 1 (necessária para o loop) -->
+      <article class="card c1" aria-hidden="true"><span class="chip">Landing pages</span><h3>Páginas que convertem visita em cliente.</h3><p>Estrutura pensada para vender: proposta clara, prova e chamada para ação.</p></article>
+      <article class="card c2" aria-hidden="true"><span class="chip">Redesign</span><h3>Seu site antigo, renascido.</h3><p>Visual moderno, código limpo e carregamento rápido sem perder o que já funciona.</p></article>
+      <article class="card c3" aria-hidden="true"><span class="chip">Institucional</span><h3>A casa digital da sua marca.</h3><p>Multi-páginas com identidade própria, responsivo do celular ao desktop.</p></article>
+      <article class="card c4" aria-hidden="true"><span class="chip">Performance</span><h3>Velocidade é experiência.</h3><p>Otimização de imagens, código e métricas Core Web Vitals no verde.</p></article>
+      <article class="card c5" aria-hidden="true"><span class="chip">SEO</span><h3>Encontrável no Google.</h3><p>Estrutura semântica, meta tags e conteúdo organizado para buscadores.</p></article>
+      <article class="card c6" aria-hidden="true"><span class="chip">Animações</span><h3>Movimento com propósito.</h3><p>Micro-interações e efeitos de scroll que contam a história da sua marca.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PROJETOS REAIS ===================== -->
+<section class="section projects" id="projetos">
+  <div class="wrap">
+    <p class="section-label reveal">Projetos</p>
+    <h2 class="section-title reveal">Feitos de verdade, em produção.</h2>
+    <div class="proj-grid">
+      <article class="proj reveal d1">
+        <div class="proj-thumb">Simulador IRPF</div>
+        <div class="proj-info">
+          <h3>Simulador de Imposto de Renda</h3>
+          <p>Ferramenta de cálculo em JavaScript puro, com lógica de faixas e resultado instantâneo.</p>
+        </div>
+      </article>
+      <article class="proj reveal d2">
+        <div class="proj-thumb">Recife Flats</div>
+        <div class="proj-info">
+          <h3>Dashboard Recife Flats</h3>
+          <p>Painel financeiro para gestão de aluguel por temporada, integrado a planilhas em tempo real.</p>
+        </div>
+      </article>
+      <article class="proj reveal d3">
+        <div class="proj-thumb">Quality Travel</div>
+        <div class="proj-info">
+          <h3>Quality Travel</h3>
+          <p>Site de agência de viagens com foco em apresentação visual de destinos e pacotes.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== NÚMEROS (DARK) ===================== -->
+<!-- Ajuste os data-target com seus números reais sempre que mudarem -->
+<section class="section dark" id="sobre">
+  <div class="wrap">
+    <p class="section-label reveal">Por que a Vanessenceweb</p>
+    <h2 class="section-title reveal">Estudo sério, entrega honesta.</h2>
+    <div class="stats">
+      <div class="reveal d1">
+        <p class="stat-num"><span class="count" data-target="86">0</span><small>+</small></p>
+        <p class="stat-label">certificações em desenvolvimento e design.</p>
+      </div>
+      <div class="reveal d2">
+        <p class="stat-num"><span class="count" data-target="100">0</span><small>%</small></p>
+        <p class="stat-label">código próprio: HTML, CSS e JS que eu explico linha a linha.</p>
+      </div>
+      <div class="reveal d3">
+        <p class="stat-num"><span class="count" data-target="3">0</span></p>
+        <p class="stat-label">projetos reais em produção e crescendo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CTA ===================== -->
+<section class="section cta" id="contato">
+  <div class="wrap">
+    <p class="section-label reveal">Vamos conversar?</p>
+    <h2 class="section-title reveal">Seu próximo site começa com um oi.</h2>
+    <p class="reveal d1">Me conte sua ideia e eu volto com uma proposta clara, sem enrolação.</p>
+    <a class="btn btn-gold reveal d2" href="mailto:contato@vanessenceweb.com">Pedir orçamento</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <p><strong>Vanessenceweb Ltd</strong> — sites modernos feitos à mão · Recife, BR</p>
+    <p>Página construída em HTML, CSS e JavaScript puros.</p>
+  </div>
+</footer>
+
+<script>
+/* ============================================================= JS ====== */
+const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* 1. Nav com borda ao rolar */
+const nav = document.getElementById('nav');
+addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 10), { passive:true });
+
+/* 2. Reveal on scroll */
+const io = new IntersectionObserver((es) => {
+  for (const e of es) if (e.isIntersecting){ e.target.classList.add('in-view'); io.unobserve(e.target); }
+}, { threshold:.18 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+/* 3. Sticky: tampa abre + o mini-site se monta em etapas --------
+   ⚙️ PAINEL DE CONTROLE — mexa aqui sem medo:
+   - fraseDigitada: o texto digitado letra a letra dentro da tela
+   - destaque:      palavra da frase que ganha o gradiente dourado
+   - velocidade:    ms por letra (menor = digita mais rápido)
+   Os MOMENTOS de cada elemento estão no HTML (atributo data-at). */
+const DEMO = {
+  fraseDigitada: 'Um site moderno muda o seu jogo.',
+  destaque: 'moderno',
+  velocidade: 38,
+};
+
+const pin = document.getElementById('processo');
+const lid = document.getElementById('lid');
+const pinTitle = document.getElementById('pinTitle');
+const pinHint = document.getElementById('pinHint');
+const stages = [...pin.querySelectorAll('[data-at]')];  /* tudo que tem data-at */
+const typeStage = document.getElementById('typeStage');
+const typeTarget = document.getElementById('typeTarget');
+const miniBtn = document.getElementById('miniBtn');
+let ticking = false;
+
+/* --- máquina de escrever ----------------------------------------
+   Pré-calcula cada letra com a flag "bold" (faz parte do destaque?)
+   e, a cada tique, re-renderiza o texto envolvendo o trecho em <b>,
+   que recebe o gradiente dourado via CSS. */
+const chars = (() => {
+  const out = [];
+  const idx = DEMO.fraseDigitada.indexOf(DEMO.destaque);
+  [...DEMO.fraseDigitada].forEach((ch, i) =>
+    out.push({ ch, bold: idx >= 0 && i >= idx && i < idx + DEMO.destaque.length }));
+  return out;
+})();
+let typeTimer = null, typed = 0;
+
+function renderTyped(){
+  let html = '', open = false;
+  for (let i = 0; i < typed; i++){
+    const c = chars[i];
+    if (c.bold && !open){ html += '<b>'; open = true; }
+    if (!c.bold && open){ html += '</b>'; open = false; }
+    html += c.ch;
+  }
+  if (open) html += '</b>';
+  typeTarget.innerHTML = html;
+}
+function startTyping(){
+  if (typeTimer || typed >= chars.length) return;
+  typeTimer = setInterval(() => {
+    typed++; renderTyped();
+    if (typed >= chars.length){ clearInterval(typeTimer); typeTimer = null; }
+  }, DEMO.velocidade);
+}
+function resetTyping(){
+  clearInterval(typeTimer); typeTimer = null;
+  typed = 0; typeTarget.innerHTML = '';
+}
+
+function updatePin(){
+  const r = pin.getBoundingClientRect();
+  const total = r.height - innerHeight;
+  const p = Math.min(1, Math.max(0, -r.top / total));
+
+  /* tampa abre nos primeiros 45% do progresso */
+  const lidP = Math.min(1, p / 0.45);
+  lid.style.transform = reduceMotion ? 'rotateX(0deg)' : `rotateX(${-78 + 78 * lidP}deg)`;
+
+  /* liga/desliga cada elemento pelo data-at (reversível ao voltar) */
+  for (const s of stages){
+    s.classList.toggle('on', reduceMotion || p >= parseFloat(s.dataset.at));
+  }
+
+  /* digitação acompanha o estágio do título */
+  const typeOn = reduceMotion || p >= parseFloat(typeStage.dataset.at);
+  if (typeOn){
+    if (reduceMotion){ typed = chars.length; renderTyped(); }
+    else startTyping();
+  } else if (typed > 0){
+    resetTyping();
+  }
+
+  /* o cursor falso chega em ~0.9; o botão "afunda" logo depois */
+  miniBtn.classList.toggle('pressed', !reduceMotion && p >= 0.94 && p < 0.97);
+
+  pinTitle.classList.toggle('show', p > 0.9);
+  pinHint.classList.toggle('hide', p > 0.08);
+  ticking = false;
+}
+addEventListener('scroll', () => {
+  if (!ticking){ requestAnimationFrame(updatePin); ticking = true; }
+}, { passive:true });
+updatePin();
+
+/* 4. Contadores animados */
+const easeOut = t => 1 - Math.pow(1 - t, 3);
+const cIO = new IntersectionObserver((es) => {
+  for (const e of es){
+    if (!e.isIntersecting) continue;
+    cIO.unobserve(e.target);
+    const el = e.target, target = parseFloat(el.dataset.target);
+    if (reduceMotion){ el.textContent = target; continue; }
+    const t0 = performance.now(), dur = 1400;
+    (function tick(now){
+      const pr = Math.min(1, (now - t0) / dur);
+      el.textContent = Math.round(target * easeOut(pr));
+      if (pr < 1) requestAnimationFrame(tick);
+    })(t0);
+  }
+}, { threshold:.6 });
+document.querySelectorAll('.count').forEach(el => cIO.observe(el));
+</script>
+</body>
+</html>
