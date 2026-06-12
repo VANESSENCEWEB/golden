@@ -1,0 +1,62 @@
+.ca-wrap {
+  max-width: var(--ca-max-w);
+  margin-inline: auto;
+  padding-inline: var(--ca-gutter);
+}
+
+.ca-wrap--wide {
+  max-width: var(--ca-max-w-wide);
+}
+
+.ca-section {
+  padding-block: var(--ca-section-y);
+}
+
+.ca-section--soft {
+  background: var(--ca-bg-soft);
+}
+
+.ca-section--dark {
+  background: var(--ca-dark);
+  color: var(--ca-dark-ink);
+  border-radius: var(--ca-radius-dark);
+  margin-inline: clamp(8px, 2vw, 24px);
+}
+
+.ca-section--dark .ca-section-label {
+  color: var(--ca-accent-soft);
+}
+
+.ca-grid-2 {
+  display: grid;
+  gap: var(--ca-space-5);
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.ca-grid-3 {
+  display: grid;
+  gap: var(--ca-space-5);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.ca-flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ca-text-center {
+  text-align: center;
+}
+
+.ca-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

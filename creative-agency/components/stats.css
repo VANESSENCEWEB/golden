@@ -1,0 +1,30 @@
+.ca-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 48px 32px;
+  margin-top: 56px;
+}
+
+.ca-stat__num {
+  font-family: var(--ca-font-display);
+  font-size: var(--ca-text-stat);
+  font-weight: var(--ca-weight-bold);
+  letter-spacing: var(--ca-tracking-snug);
+  line-height: var(--ca-leading-none);
+  background: var(--ca-grad-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.ca-stat__num small {
+  font-size: 0.45em;
+}
+
+.ca-stat__label {
+  margin-top: 10px;
+  font-size: 15px;
+  color: var(--ca-dark-ink-soft);
+  max-width: 24ch;
+  line-height: 1.45;
+}

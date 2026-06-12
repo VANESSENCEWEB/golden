@@ -1,0 +1,64 @@
+/* Creative Agency — Color Tokens
+   Inspired by premium agency layouts (warm base + bold accent).
+   Distinct from Vanessenceweb gold: violet + rose creative spectrum. */
+
+:root {
+  /* Surfaces */
+  --ca-bg: #fafaf9;
+  --ca-bg-soft: #f3f2ee;
+  --ca-bg-muted: #eae8e3;
+  --ca-surface: #ffffff;
+  --ca-surface-glass: rgba(255, 255, 255, 0.55);
+
+  /* Ink */
+  --ca-ink: #0f0e0d;
+  --ca-ink-soft: #6b6560;
+  --ca-ink-muted: #9a948c;
+
+  /* Dark sections */
+  --ca-dark: #0a0908;
+  --ca-dark-elevated: #141210;
+  --ca-dark-ink: #f5f3ef;
+  --ca-dark-ink-soft: #a9a397;
+
+  /* Brand accent — violet core */
+  --ca-accent: #7c3aed;
+  --ca-accent-soft: #a78bfa;
+  --ca-accent-deep: #5b21b6;
+  --ca-accent-hot: #f43f5e;
+  --ca-accent-hot-soft: #fb7185;
+
+  /* Gradients */
+  --ca-grad-brand: linear-gradient(110deg, #a78bfa 0%, #7c3aed 42%, #5b21b6 100%);
+  --ca-grad-warm: linear-gradient(110deg, #fb7185 0%, #f43f5e 48%, #e11d48 100%);
+  --ca-grad-aurora: radial-gradient(35% 45% at 20% 30%, rgba(167, 139, 250, 0.5), transparent 70%),
+    radial-gradient(40% 50% at 80% 25%, rgba(244, 63, 94, 0.35), transparent 70%),
+    radial-gradient(45% 55% at 60% 90%, rgba(6, 182, 212, 0.3), transparent 70%);
+
+  /* Service card gradients (marquee) */
+  --ca-card-1: linear-gradient(160deg, #7c3aed, #4c1d95);
+  --ca-card-2: linear-gradient(160deg, #1d1d1f, #3a3a3e);
+  --ca-card-3: linear-gradient(160deg, #6366f1, #312e81);
+  --ca-card-4: linear-gradient(160deg, #06b6d4, #0e7490);
+  --ca-card-5: linear-gradient(160deg, #10b981, #065f46);
+  --ca-card-6: linear-gradient(160deg, #f43f5e, #9f1239);
+
+  /* Semantic */
+  --ca-success: #10b981;
+  --ca-warning: #f59e0b;
+  --ca-error: #ef4444;
+  --ca-info: #06b6d4;
+
+  /* Borders & overlays */
+  --ca-border: rgba(0, 0, 0, 0.06);
+  --ca-border-strong: rgba(0, 0, 0, 0.12);
+  --ca-border-dark: rgba(255, 255, 255, 0.1);
+  --ca-shadow-soft: 0 30px 60px -30px rgba(0, 0, 0, 0.25);
+  --ca-shadow-accent: 0 10px 30px -12px rgba(124, 58, 237, 0.55);
+
+  /* ONYX-inspired dark mode tokens (optional section themes) */
+  --ca-void: #000000;
+  --ca-obsidian: #09090b;
+  --ca-panel: #111111;
+  --ca-lime: #ccff00;
+}

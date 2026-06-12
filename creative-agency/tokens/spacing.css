@@ -1,0 +1,40 @@
+/* Creative Agency — Spacing & Layout Tokens */
+
+:root {
+  /* Spacing scale */
+  --ca-space-1: 0.25rem;
+  --ca-space-2: 0.5rem;
+  --ca-space-3: 0.75rem;
+  --ca-space-4: 1rem;
+  --ca-space-5: 1.25rem;
+  --ca-space-6: 1.5rem;
+  --ca-space-8: 2rem;
+  --ca-space-10: 2.5rem;
+  --ca-space-12: 3rem;
+  --ca-space-16: 4rem;
+  --ca-space-20: 5rem;
+  --ca-space-24: 6rem;
+
+  /* Layout */
+  --ca-max-w: 1120px;
+  --ca-max-w-narrow: 46ch;
+  --ca-max-w-wide: 1280px;
+  --ca-gutter: clamp(1rem, 4vw, 1.5rem);
+  --ca-section-y: clamp(5rem, 12vh, 8.75rem);
+
+  /* Radii */
+  --ca-radius-sm: 8px;
+  --ca-radius-md: 16px;
+  --ca-radius-card: 22px;
+  --ca-radius-lg: 28px;
+  --ca-radius-dark: 40px;
+  --ca-radius-pill: 980px;
+
+  /* Z-index */
+  --ca-z-nav: 100;
+  --ca-z-overlay: 200;
+  --ca-z-modal: 300;
+
+  /* Component sizes */
+  --ca-nav-h: 56px;
+}

@@ -1,0 +1,39 @@
+/* Creative Agency — Typography Tokens */
+
+:root {
+  --ca-font-display: "Space Grotesk", system-ui, sans-serif;
+  --ca-font-body: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --ca-font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  /* Scale — fluid clamp() sizes */
+  --ca-text-xs: 0.75rem;
+  --ca-text-sm: 0.8125rem;
+  --ca-text-base: 1rem;
+  --ca-text-md: clamp(1.0625rem, 2.2vw, 1.3125rem);
+  --ca-text-lg: clamp(1.125rem, 2.4vw, 1.5rem);
+  --ca-text-xl: clamp(1.25rem, 2.8vw, 1.875rem);
+  --ca-text-2xl: clamp(2rem, 4.6vw, 3.25rem);
+  --ca-text-3xl: clamp(2.5rem, 5vw, 3.5rem);
+  --ca-text-hero: clamp(3.25rem, 10vw, 8rem);
+  --ca-text-stat: clamp(3.25rem, 7vw, 5.5rem);
+
+  /* Weights */
+  --ca-weight-regular: 400;
+  --ca-weight-medium: 500;
+  --ca-weight-semibold: 600;
+  --ca-weight-bold: 700;
+
+  /* Tracking */
+  --ca-tracking-tight: -0.04em;
+  --ca-tracking-snug: -0.03em;
+  --ca-tracking-normal: 0;
+  --ca-tracking-wide: 0.08em;
+  --ca-tracking-widest: 0.14em;
+
+  /* Line heights */
+  --ca-leading-none: 1;
+  --ca-leading-tight: 1.06;
+  --ca-leading-snug: 1.15;
+  --ca-leading-normal: 1.5;
+  --ca-leading-relaxed: 1.65;
+}

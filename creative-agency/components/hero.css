@@ -1,0 +1,52 @@
+.ca-hero {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-top: var(--ca-nav-h);
+  position: relative;
+}
+
+.ca-hero__title {
+  margin-top: 10px;
+  font-size: var(--ca-text-hero);
+  font-weight: var(--ca-weight-bold);
+  letter-spacing: var(--ca-tracking-tight);
+  line-height: 0.98;
+}
+
+.ca-hero__title em {
+  font-style: normal;
+  background: var(--ca-grad-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.ca-hero__sub {
+  margin-top: 18px;
+  max-width: var(--ca-max-w-narrow);
+  font-size: var(--ca-text-md);
+  color: var(--ca-ink-soft);
+  line-height: var(--ca-leading-normal);
+}
+
+.ca-hero__actions {
+  margin-top: 30px;
+}
+
+.ca-hero__scroll {
+  margin-top: 60px;
+  font-size: var(--ca-text-sm);
+  color: var(--ca-ink-soft);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.ca-hero__scroll svg {
+  animation: ca-bounce 2s infinite;
+}
