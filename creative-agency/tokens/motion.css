@@ -1,0 +1,29 @@
+/* Creative Agency — Motion Tokens */
+
+:root {
+  /* Easing */
+  --ca-ease: cubic-bezier(0.25, 0.7, 0.25, 1);
+  --ca-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ca-ease-elastic: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ca-ease-linear: linear;
+
+  /* Durations */
+  --ca-duration-fast: 0.18s;
+  --ca-duration-base: 0.25s;
+  --ca-duration-medium: 0.5s;
+  --ca-duration-slow: 0.9s;
+  --ca-duration-slower: 1.4s;
+
+  /* Stagger delays (reveal) */
+  --ca-delay-1: 0.08s;
+  --ca-delay-2: 0.16s;
+  --ca-delay-3: 0.24s;
+  --ca-delay-4: 0.32s;
+  --ca-delay-5: 0.4s;
+
+  /* Marquee */
+  --ca-marquee-duration: 36s;
+
+  /* Scroll pin section height */
+  --ca-pin-height: 360vh;
+}

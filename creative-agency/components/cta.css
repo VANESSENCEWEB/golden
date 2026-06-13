@@ -1,0 +1,17 @@
+.ca-cta {
+  text-align: center;
+}
+
+.ca-cta .ca-section-title {
+  margin-inline: auto;
+}
+
+.ca-cta p {
+  margin-top: 14px;
+  color: var(--ca-ink-soft);
+  font-size: var(--ca-text-md);
+}
+
+.ca-cta .ca-btn {
+  margin-top: 28px;
+}

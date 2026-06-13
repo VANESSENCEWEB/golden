@@ -1,0 +1,52 @@
+.ca-animate-bounce {
+  animation: ca-bounce 2s infinite;
+}
+
+.ca-animate-float {
+  animation: ca-float 8s ease-in-out infinite;
+}
+
+.ca-animate-shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    110deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.45) 50%,
+    transparent 70%
+  );
+  transform: translateX(-130%);
+}
+
+.ca-animate-shine.is-active::after {
+  animation: ca-shine 2.8s var(--ca-ease) 0.5s infinite;
+}
+
+.ca-hover-lift {
+  transition: transform var(--ca-duration-medium) var(--ca-ease);
+}
+
+.ca-hover-lift:hover {
+  transform: translateY(-8px);
+}
+
+.ca-hover-scale {
+  transition: transform var(--ca-duration-base) var(--ca-ease);
+}
+
+.ca-hover-scale:hover {
+  transform: scale(1.05);
+}
+
+.ca-stroke-draw {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: ca-dash 1.5s var(--ca-ease-out) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ca-marquee__inner {
+    animation: none !important;
+  }
+}

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Creative Agency — Design System</title>
+  <meta name="description" content="Design system for Creative Agency — web design, branding, automation, and landing pages.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="creative-agency.css">
+
+  <style>
+    .ds-page { padding-top: calc(var(--ca-nav-h) + 2rem); }
+    .ds-block { margin-bottom: 4rem; }
+    .ds-block h2 {
+      font-size: var(--ca-text-xl);
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--ca-border);
+    }
+    .ds-swatch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 1rem;
+    }
+    .ds-swatch {
+      border-radius: var(--ca-radius-md);
+      overflow: hidden;
+      border: 1px solid var(--ca-border);
+    }
+    .ds-swatch__color { height: 80px; }
+    .ds-swatch__meta { padding: 0.75rem; font-size: 12px; background: var(--ca-surface); }
+    .ds-swatch__meta code { color: var(--ca-accent); font-family: var(--ca-font-mono); }
+    .ds-type-row { margin-bottom: 1.5rem; }
+    .ds-type-row .ca-mono-label { margin-bottom: 0.5rem; }
+    .ds-demo-row { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; }
+    .ds-token-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    .ds-token-table th, .ds-token-table td {
+      text-align: left; padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--ca-border);
+    }
+    .ds-token-table code { font-family: var(--ca-font-mono); font-size: 12px; color: var(--ca-accent-deep); }
+    .ds-anim-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 1rem; }
+    .ds-anim-box {
+      height: 160px; border-radius: var(--ca-radius-card);
+      background: var(--ca-bg-soft); border: 1px solid var(--ca-border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; color: var(--ca-ink-soft);
+    }
+    .ds-section-preview { background: var(--ca-bg-soft); border-radius: var(--ca-radius-lg); padding: 2rem; }
+  </style>
+</head>
+<body class="ca-noise">
+
+  <nav class="ca-nav" id="ca-nav">
+    <div class="ca-nav__inner">
+      <a class="ca-nav__logo" href="#">Creative<span>Agency</span></a>
+      <ul class="ca-nav__links">
+        <li><a href="#tokens">Tokens</a></li>
+        <li><a href="#typography">Type</a></li>
+        <li><a href="#components">Components</a></li>
+        <li><a href="#animations">Motion</a></li>
+      </ul>
+      <a class="ca-nav__cta" href="#cta">Get started</a>
+    </div>
+  </nav>
+
+  <main class="ds-page ca-wrap">
+    <header class="ca-hero ca-hero-stagger" style="min-height: 70svh;">
+      <p class="ca-eyebrow">Design System v1.0</p>
+      <h1 class="ca-hero__title">Build brands that<br><em>stand out.</em></h1>
+      <p class="ca-hero__sub">A modular design system for Creative Agency — web design, branding, automation, landing pages, and logo design. Inspired by premium agency layouts, with its own violet identity.</p>
+      <div class="ca-hero__actions ca-btn-group">
+        <a class="ca-btn ca-btn--primary" href="creative-agency.css">View CSS entry</a>
+        <a class="ca-btn ca-btn--ghost" href="tokens/tokens.json">JSON tokens</a>
+      </div>
+    </header>
+
+    <!-- TOKENS -->
+    <section class="ds-block" id="tokens">
+      <p class="ca-section-label ca-reveal">01 — Tokens</p>
+      <h2 class="ca-section-title ca-reveal">Color palette</h2>
+      <div class="ds-swatch-grid ca-reveal ca-reveal--d1" style="margin-top: 2rem;">
+        <div class="ds-swatch"><div class="ds-swatch__color" style="background:#fafaf9"></div><div class="ds-swatch__meta"><strong>bg</strong><br><code>#fafaf9</code></div></div>
+        <div class="ds-swatch"><div class="ds-swatch__color" style="background:#0f0e0d"></div><div class="ds-swatch__meta"><strong>ink</strong><br><code>#0f0e0d</code></div></div>
+        <div class="ds-swatch"><div class="ds-swatch__color" style="background:#7c3aed"></div><div class="ds-swatch__meta"><strong>accent</strong><br><code>#7c3aed</code></div></div>
+        <div class="ds-swatch"><div class="ds-swatch__color" style="background:#a78bfa"></div><div class="ds-swatch__meta"><strong>accent-soft</strong><br><code>#a78bfa</code></div></div>
+        <div class="ds-swatch"><div class="ds-swatch__color" style="background:#f43f5e"></div><div class="ds-swatch__meta"><strong>accent-hot</strong><br><code>#f43f5e</code></div></div>
+        <div class="ds-swatch"><div class="ds-swatch__color" style="background:#0a0908"></div><div class="ds-swatch__meta"><strong>dark</strong><br><code>#0a0908</code></div></div>
+        <div class="ds-swatch"><div class="ds-swatch__color" style="background:linear-gradient(110deg,#a78bfa,#7c3aed,#5b21b6)"></div><div class="ds-swatch__meta"><strong>grad-brand</strong><br><code>violet gradient</code></div></div>
+        <div class="ds-swatch"><div class="ds-swatch__color" style="background:linear-gradient(110deg,#fb7185,#f43f5e,#e11d48)"></div><div class="ds-swatch__meta"><strong>grad-warm</strong><br><code>rose gradient</code></div></div>
+      </div>
+
+      <table class="ds-token-table ca-reveal ca-reveal--d2" style="margin-top: 2rem;">
+        <thead><tr><th>Token</th><th>Value</th><th>Usage</th></tr></thead>
+        <tbody>
+          <tr><td><code>--ca-max-w</code></td><td>1120px</td><td>Content container</td></tr>
+          <tr><td><code>--ca-radius-card</code></td><td>22px</td><td>Cards, projects</td></tr>
+          <tr><td><code>--ca-radius-dark</code></td><td>40px</td><td>Dark inset sections</td></tr>
+          <tr><td><code>--ca-ease</code></td><td>cubic-bezier(.25,.7,.25,1)</td><td>Default transitions</td></tr>
+          <tr><td><code>--ca-marquee-duration</code></td><td>36s</td><td>Service carousel loop</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- TYPOGRAPHY -->
+    <section class="ds-block" id="typography">
+      <p class="ca-section-label ca-reveal">02 — Typography</p>
+      <h2 class="ca-section-title ca-reveal">Type scale</h2>
+      <div style="margin-top: 2rem;">
+        <div class="ds-type-row ca-reveal"><p class="ca-mono-label">--ca-text-hero / Space Grotesk 700</p><p style="font-size:var(--ca-text-hero);font-family:var(--ca-font-display);font-weight:700;letter-spacing:var(--ca-tracking-tight);line-height:.98">Hero headline</p></div>
+        <div class="ds-type-row ca-reveal ca-reveal--d1"><p class="ca-mono-label">--ca-text-2xl / Section title</p><p style="font-size:var(--ca-text-2xl);font-family:var(--ca-font-display);font-weight:700">Section title scale</p></div>
+        <div class="ds-type-row ca-reveal ca-reveal--d2"><p class="ca-mono-label">--ca-text-md / Body large</p><p style="font-size:var(--ca-text-md);color:var(--ca-ink-soft)">Body text for subtitles and descriptions. Inter at medium weight for readability.</p></div>
+        <div class="ds-type-row ca-reveal ca-reveal--d3"><p class="ca-mono-label">ca-section-label / Eyebrow</p><p class="ca-section-label">Services</p></div>
+        <div class="ds-type-row ca-reveal ca-reveal--d4"><p class="ca-mono-label">ca-text-gradient</p><p style="font-size:2rem;font-family:var(--ca-font-display);font-weight:700" class="ca-text-gradient">Gradient accent text</p></div>
+      </div>
+    </section>
+
+    <!-- COMPONENTS -->
+    <section class="ds-block" id="components">
+      <p class="ca-section-label ca-reveal">03 — Components</p>
+      <h2 class="ca-section-title ca-reveal">UI building blocks</h2>
+
+      <div class="ds-block">
+        <p class="ca-mono-label ca-reveal">Buttons</p>
+        <div class="ds-demo-row ca-reveal ca-reveal--d1" style="margin-top:1rem">
+          <button class="ca-btn ca-btn--primary">Primary</button>
+          <button class="ca-btn ca-btn--ghost">Ghost</button>
+          <button class="ca-btn ca-btn--dark">Dark</button>
+          <button class="ca-btn ca-btn--primary ca-btn--sm">Small</button>
+        </div>
+      </div>
+
+      <div class="ds-block">
+        <p class="ca-mono-label ca-reveal">Chips & effects</p>
+        <div class="ds-demo-row ca-reveal ca-reveal--d1" style="margin-top:1rem">
+          <span class="ca-chip">Default chip</span>
+          <span class="ca-chip ca-chip--accent">Accent chip</span>
+        </div>
+      </div>
+
+      <div class="ds-block">
+        <p class="ca-mono-label ca-reveal">Info cards</p>
+        <div class="ca-grid-3 ca-reveal ca-reveal--d1" style="margin-top:1rem">
+          <article class="ca-info-card ca-hover-lift">
+            <span class="ca-chip ca-chip--accent">Web Design</span>
+            <h3 style="margin-top:1rem">Custom websites</h3>
+            <p>Hand-coded, fast, and built to convert — no generic templates.</p>
+          </article>
+          <article class="ca-info-card ca-hover-lift">
+            <span class="ca-chip ca-chip--accent">Branding</span>
+            <h3 style="margin-top:1rem">Brand identity</h3>
+            <p>Logo design, visual systems, and brand restructuring.</p>
+          </article>
+          <article class="ca-info-card ca-hover-lift">
+            <span class="ca-chip ca-chip--accent">Automation</span>
+            <h3 style="margin-top:1rem">Smart workflows</h3>
+            <p>Connect your site to the tools that run your business.</p>
+          </article>
+        </div>
+      </div>
+
+      <div class="ds-block">
+        <p class="ca-mono-label ca-reveal">Service marquee cards</p>
+        <div class="ca-marquee ca-reveal" style="margin-top:1rem">
+          <div class="ca-marquee__inner">
+            <article class="ca-card ca-card--violet"><span class="ca-chip">Landing Pages</span><h3>Pages that convert.</h3><p>Clear proposition, social proof, and strong CTAs.</p></article>
+            <article class="ca-card ca-card--graphite"><span class="ca-chip">Redesign</span><h3>Your site, reborn.</h3><p>Modern look without losing what works.</p></article>
+            <article class="ca-card ca-card--indigo"><span class="ca-chip">Brand</span><h3>Identity that sticks.</h3><p>Logo, colors, and visual language.</p></article>
+            <article class="ca-card ca-card--cyan"><span class="ca-chip">Automation</span><h3>Work while you sleep.</h3><p>Forms, CRM, and workflow integrations.</p></article>
+            <article class="ca-card ca-card--emerald"><span class="ca-chip">SEO</span><h3>Found on Google.</h3><p>Semantic structure and performance.</p></article>
+            <article class="ca-card ca-card--rose"><span class="ca-chip">Motion</span><h3>Scroll with purpose.</h3><p>Animations that tell your story.</p></article>
+            <article class="ca-card ca-card--violet" aria-hidden="true"><span class="ca-chip">Landing Pages</span><h3>Pages that convert.</h3><p>Clear proposition, social proof, and strong CTAs.</p></article>
+            <article class="ca-card ca-card--graphite" aria-hidden="true"><span class="ca-chip">Redesign</span><h3>Your site, reborn.</h3><p>Modern look without losing what works.</p></article>
+            <article class="ca-card ca-card--indigo" aria-hidden="true"><span class="ca-chip">Brand</span><h3>Identity that sticks.</h3><p>Logo, colors, and visual language.</p></article>
+            <article class="ca-card ca-card--cyan" aria-hidden="true"><span class="ca-chip">Automation</span><h3>Work while you sleep.</h3><p>Forms, CRM, and workflow integrations.</p></article>
+            <article class="ca-card ca-card--emerald" aria-hidden="true"><span class="ca-chip">SEO</span><h3>Found on Google.</h3><p>Semantic structure and performance.</p></article>
+            <article class="ca-card ca-card--rose" aria-hidden="true"><span class="ca-chip">Motion</span><h3>Scroll with purpose.</h3><p>Animations that tell your story.</p></article>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-block">
+        <p class="ca-mono-label ca-reveal">Portfolio grid</p>
+        <div class="ca-proj-grid ca-reveal ca-reveal--d1" style="margin-top:1rem">
+          <article class="ca-proj"><div class="ca-proj__thumb">Nova Brand</div><div class="ca-proj__info"><h3>Brand Restructuring</h3><p>Full visual identity overhaul for a SaaS startup.</p></div></article>
+          <article class="ca-proj"><div class="ca-proj__thumb">Flow Auto</div><div class="ca-proj__info"><h3>Automation Hub</h3><p>Lead capture, CRM sync, and email workflows.</p></div></article>
+          <article class="ca-proj"><div class="ca-proj__thumb">Pulse LP</div><div class="ca-proj__info"><h3>High-converting LP</h3><p>Landing page with scroll-driven storytelling.</p></div></article>
+        </div>
+      </div>
+
+      <div class="ds-block ds-section-preview ca-reveal">
+        <p class="ca-mono-label">Dark stats section</p>
+        <div class="ca-section--dark" style="margin:1.5rem 0 0;padding:3rem 2rem">
+          <p class="ca-section-label">By the numbers</p>
+          <h2 class="ca-section-title" style="color:var(--ca-dark-ink)">Results that speak.</h2>
+          <div class="ca-stats">
+            <div><p class="ca-stat__num"><span class="ca-count" data-target="120">0</span><small>+</small></p><p class="ca-stat__label">projects delivered across web, brand, and automation.</p></div>
+            <div><p class="ca-stat__num"><span class="ca-count" data-target="98">0</span><small>%</small></p><p class="ca-stat__label">client satisfaction on design and delivery.</p></div>
+            <div><p class="ca-stat__num"><span class="ca-count" data-target="48">0</span><small>h</small></p><p class="ca-stat__label">average turnaround for landing page prototypes.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ANIMATIONS -->
+    <section class="ds-block" id="animations">
+      <p class="ca-section-label ca-reveal">04 — Motion</p>
+      <h2 class="ca-section-title ca-reveal">Animation utilities</h2>
+      <div class="ds-anim-grid ca-reveal ca-reveal--d1" style="margin-top:2rem">
+        <div class="ds-anim-box ca-animate-bounce">ca-animate-bounce</div>
+        <div class="ds-anim-box ca-animate-float">ca-animate-float</div>
+        <div class="ds-anim-box ca-hover-lift" style="cursor:pointer">ca-hover-lift (hover)</div>
+        <div class="ds-anim-box ca-bg-grid">ca-bg-grid</div>
+      </div>
+
+      <table class="ds-token-table ca-reveal ca-reveal--d2" style="margin-top:2rem">
+        <thead><tr><th>Class</th><th>Trigger</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>.ca-reveal</code></td><td>IntersectionObserver</td><td>Fade up on scroll → <code>.is-visible</code></td></tr>
+          <tr><td><code>.ca-hero-stagger</code></td><td>Page load</td><td>Staggered hero entrance</td></tr>
+          <tr><td><code>.ca-pin-section</code></td><td>Scroll progress</td><td>Sticky scroll choreography</td></tr>
+          <tr><td><code>.ca-marquee</code></td><td>CSS infinite</td><td>Auto-scrolling service cards</td></tr>
+          <tr><td><code>.ca-count</code></td><td>IntersectionObserver</td><td>Animated number counter</td></tr>
+          <tr><td><code>[data-at]</code></td><td>Scroll progress</td><td>Stage activation threshold</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- CTA -->
+    <section class="ca-section ca-cta" id="cta">
+      <div class="ca-wrap">
+        <p class="ca-section-label ca-reveal">Ready to build?</p>
+        <h2 class="ca-section-title ca-reveal" style="margin-inline:auto">Your site starts here.</h2>
+        <p class="ca-reveal ca-reveal--d1">Import <code>creative-agency.css</code> and <code>js/index.js</code> to start building the full Creative Agency website.</p>
+        <a class="ca-btn ca-btn--primary ca-reveal ca-reveal--d2" href="../index.html">View reference collection</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="ca-footer">
+    <div class="ca-wrap">
+      <p><strong>Creative Agency</strong> — Design System v1.0</p>
+      <p>Web design · Branding · Automation · Landing pages · Logo design</p>
+    </div>
+  </footer>
+
+  <script type="module" src="js/index.js"></script>
+</body>
+</html>

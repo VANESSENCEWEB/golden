@@ -1,0 +1,16 @@
+/**
+ * Creative Agency Design System — Main Entry Point
+ *
+ * Import order:
+ * 1. Tokens (colors, typography, spacing, motion)
+ * 2. Foundations (reset, base)
+ * 3. Utilities (layout, effects)
+ * 4. Animations (keyframes, scroll, micro-interactions)
+ * 5. Components (nav, buttons, hero, cards, etc.)
+ */
+
+@import "./tokens/index.css";
+@import "./foundations/index.css";
+@import "./utilities/index.css";
+@import "./animations/index.css";
+@import "./components/index.css";

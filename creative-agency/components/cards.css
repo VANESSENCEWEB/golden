@@ -1,0 +1,89 @@
+/* Service marquee cards */
+.ca-card {
+  flex: 0 0 320px;
+  border-radius: var(--ca-radius-card);
+  padding: 28px;
+  min-height: 340px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  transition: transform var(--ca-duration-medium) var(--ca-ease);
+}
+
+.ca-card:hover {
+  transform: translateY(-8px);
+}
+
+.ca-card h3 {
+  font-size: 22px;
+  letter-spacing: -0.02em;
+  line-height: var(--ca-leading-snug);
+}
+
+.ca-card p {
+  margin-top: 8px;
+  font-size: 14px;
+  opacity: 0.85;
+  line-height: var(--ca-leading-normal);
+}
+
+.ca-card .ca-chip {
+  position: absolute;
+  top: 22px;
+  left: 22px;
+}
+
+.ca-card--violet {
+  background: var(--ca-card-1);
+}
+
+.ca-card--graphite {
+  background: var(--ca-card-2);
+}
+
+.ca-card--indigo {
+  background: var(--ca-card-3);
+}
+
+.ca-card--cyan {
+  background: var(--ca-card-4);
+}
+
+.ca-card--emerald {
+  background: var(--ca-card-5);
+}
+
+.ca-card--rose {
+  background: var(--ca-card-6);
+}
+
+/* Feature / info cards */
+.ca-info-card {
+  border-radius: var(--ca-radius-card);
+  padding: var(--ca-space-8);
+  background: var(--ca-surface);
+  border: 1px solid var(--ca-border);
+  transition:
+    transform var(--ca-duration-medium) var(--ca-ease),
+    box-shadow var(--ca-duration-medium) var(--ca-ease);
+}
+
+.ca-info-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--ca-shadow-soft);
+}
+
+.ca-info-card h3 {
+  font-size: var(--ca-text-xl);
+  letter-spacing: var(--ca-tracking-snug);
+}
+
+.ca-info-card p {
+  margin-top: var(--ca-space-2);
+  font-size: 14px;
+  color: var(--ca-ink-soft);
+  line-height: var(--ca-leading-normal);
+}
